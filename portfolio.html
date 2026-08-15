@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anahit Poghosyan — AI & Machine Learning Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0F1A;
+    --panel: #121a2b;
+    --panel-alt: #182036;
+    --line: #29324c;
+    --text: #E8EAF2;
+    --text-dim: #8f98b3;
+    --cyan: #5EEAD4;
+    --amber: #F5A65B;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{margin:0; padding:0; box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before{
+    content:'';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a{color: inherit;}
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(11,15,26,0.85);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .logo{
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--cyan);
+    letter-spacing: 0.5px;
+  }
+  .navlinks{
+    display:flex;
+    gap: 28px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .navlinks a:hover{ color: var(--cyan); }
+
+  /* HERO */
+  header.hero{
+    padding: 90px 0 60px;
+    position: relative;
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--amber);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width: 8px; height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    display:inline-block;
+    animation: blink 2s infinite ease-in-out;
+  }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+  h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    max-width: 780px;
+  }
+  h1 .accent{ color: var(--cyan); }
+
+  .hero-sub{
+    margin-top: 22px;
+    max-width: 560px;
+    font-size: 17px;
+    color: var(--text-dim);
+  }
+
+  .hero-ctas{
+    margin-top: 32px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid var(--line);
+    transition: all 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--cyan);
+    color: #062421;
+    border-color: var(--cyan);
+    font-weight: 600;
+  }
+  .btn-primary:hover{ background: #7FF3E1; }
+  .btn-ghost{ color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  /* PIPELINE SIGNATURE */
+  .pipeline{
+    margin-top: 70px;
+    padding: 30px 0 10px;
+    overflow-x: auto;
+  }
+  .pipeline-track{
+    display:flex;
+    align-items: center;
+    min-width: 640px;
+    position: relative;
+  }
+  .stage{
+    flex: 1;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 14px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .stage-label{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .stage-value{
+    font-family: var(--font-display);
+    font-size: 15px;
+    margin-top: 6px;
+    color: var(--text);
+  }
+  .stage.output{
+    background: linear-gradient(135deg, rgba(94,234,212,0.14), rgba(245,166,91,0.10));
+    border-color: var(--cyan);
+  }
+  .stage.output .stage-value{ color: var(--cyan); }
+  .connector{
+    flex: 0 0 34px;
+    height: 2px;
+    background: var(--line);
+    position: relative;
+    overflow: visible;
+  }
+  .connector .dot{
+    position:absolute;
+    top: -3px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: travel 2.6s linear infinite;
+  }
+  @keyframes travel{
+    0%{ left: -8px; opacity: 0;}
+    10%{ opacity: 1;}
+    90%{ opacity: 1;}
+    100%{ left: 100%; opacity: 0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .eyebrow::before{ animation: none; }
+    .connector .dot{ animation: none; opacity: 0.6; left: 45%; }
+  }
+
+  /* SECTIONS */
+  section{ padding: 80px 0; border-top: 1px solid var(--line); }
+  .section-head{
+    display:flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .section-tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--amber);
+  }
+  h2{
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3.4vw, 32px);
+    font-weight: 600;
+  }
+
+  /* SCHEMA / SKILLS */
+  .schema{
+    font-family: var(--font-mono);
+    font-size: 14px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .schema-row{
+    display:flex;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s ease;
+  }
+  .metrics{
+    display:flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .metric{
+    font-family: var(--font-mono);
+  }
+  .metric-value{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--cyan);
+    display:block;
+  }
+  .metric-label{
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .project-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 6px;
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--cyan);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .project-link:hover{ border-bottom-color: var(--cyan); }
+  .more-projects{
+    text-align:center;
+    margin-top: 8px;
+    padding: 22px;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .more-projects a{ color: var(--cyan); text-decoration: none; border-bottom: 1px solid rgba(94,234,212,0.4); }
+
+  .schema-row:last-child{ border-bottom: none; }
+  .schema-row:hover{ background: var(--panel-alt); }
+  .schema-key{ color: var(--text); }
+  .schema-type{ color: var(--cyan); }
+
+  /* PROJECTS */
+  .project{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .project-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .project h3{
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .status{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(94,234,212,0.12);
+    color: var(--cyan);
+    border: 1px solid rgba(94,234,212,0.35);
+    white-space: nowrap;
+  }
+  .project p{ color: var(--text-dim); margin-top: 12px; font-size: 15px; max-width: 640px;}
+  .stack{
+    display:flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .chip{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: var(--panel-alt);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+  }
+
+  /* EDUCATION TIMELINE */
+  .timeline{
+    position: relative;
+    padding-left: 26px;
+    border-left: 2px solid var(--line);
+  }
+  .tl-item{
+    position: relative;
+    padding-bottom: 34px;
+  }
+  .tl-item:last-child{ padding-bottom: 0; }
+  .tl-item::before{
+    content:'';
+    position:absolute;
+    left: -32px;
+    top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--cyan);
+  }
+  .tl-period{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--amber);
+  }
+  .tl-title{
+    font-family: var(--font-display);
+    font-size: 17px;
+    margin-top: 4px;
+  }
+  .tl-desc{ color: var(--text-dim); font-size: 14px; margin-top: 6px; max-width: 560px;}
+
+  /* CONTACT */
+  .contact-card{
+    background: linear-gradient(135deg, rgba(94,234,212,0.08), rgba(245,166,91,0.06));
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 48px;
+    text-align: center;
+  }
+  .contact-card h2{ margin-bottom: 12px; }
+  .contact-card p{ color: var(--text-dim); max-width: 480px; margin: 0 auto 28px; }
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  footer{
+    padding: 30px 0 50px;
+    text-align:center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  ::selection{ background: var(--cyan); color: #062421; }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
+
+  @media print{
+    @page{ size: A4; margin: 14mm; }
+    body::before{ display: none; }
+    nav{ position: static; backdrop-filter: none; }
+    .navlinks{ display: none; }
+    .wrap{ max-width: 100%; padding: 0 6mm; }
+    header.hero{ padding: 20px 0 30px; }
+    .hero-ctas{ display: none; }
+    section{ padding: 30px 0; page-break-inside: avoid; }
+    .pipeline{ margin-top: 40px; }
+    .project{ page-break-inside: avoid; }
+    .contact-card{ padding: 30px; }
+    .contact-ctas a{ text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">poghosyan<span style="color:var(--text-dim)">.dev</span></div>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">open to LIA 1 internship · v.42–v.49 2026</div>
+    <h1>Turning raw data into <span class="accent">models that ship.</span></h1>
+    <p class="hero-sub">I'm Anahit Poghosyan, training as an AI & Machine Learning Developer at IT-Högskolan Stockholm. I bring years of hands-on customer- and team-facing experience together with a growing technical toolkit — Python, scikit-learn, and a habit of turning messy data into working models.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#work">See the projects</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+
+    <div class="pipeline">
+      <div class="pipeline-track">
+        <div class="stage"><div class="stage-label">01 · Ingest</div><div class="stage-value">Raw Data</div></div>
+        <div class="connector"><div class="dot" style="animation-delay:0s"></div></div>
+        <div class="stage"><div class="stage-label">02 · Clean</div><div class="stage-value">Transform</div></div>
+        <div class="connector"><div class="dot" style="animation-delay:0.9s"></div></div>
+        <div class="stage"><div class="stage-label">03 · Learn</div><div class="stage-value">Model</div></div>
+        <div class="connector"><div class="dot" style="animation-delay:1.8s"></div></div>
+        <div class="stage output"><div class="stage-label">04 · Output</div><div class="stage-value">Anahit</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">/// 01</span>
+      <h2>Selected work</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Can't See the Forest for All the Trees</h3>
+        <span class="status">shipped</span>
+      </div>
+      <p>Predicted student final grades from behavioral and demographic data using Decision Trees and Random Forest. Ran GridSearchCV across hyperparameter combinations, compared model families, then stripped the feature set down to see how far it could shrink without losing performance.</p>
+      <div class="metrics">
+        <div class="metric"><span class="metric-value">1.74</span><span class="metric-label">Test MAE (0–20 scale)</span></div>
+        <div class="metric"><span class="metric-value">−9.6%</span><span class="metric-label">Random Forest vs. Decision Tree error</span></div>
+        <div class="metric"><span class="metric-value">39 → 10</span><span class="metric-label">features, no performance loss</span></div>
+      </div>
+      <div class="stack">
+        <span class="chip">python</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">random forest</span>
+        <span class="chip">gridsearchcv</span>
+        <span class="chip">feature selection</span>
+      </div>
+      <a class="project-link" href="https://github.com/Anahit85/My-ML-laboration" target="_blank" rel="noopener">View notebook on GitHub →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Chicago Crime & Census Analysis</h3>
+        <span class="status">shipped</span>
+      </div>
+      <p>Cleaned and cross-referenced Chicago's public crime dataset with census socioeconomic data to answer real questions: arrest rates, day-vs-night patterns, domestic incidents, and neighborhood-level trends — from raw CSV to answered hypothesis.</p>
+      <div class="metrics">
+        <div class="metric"><span class="metric-value">7.7M</span><span class="metric-label">crime records processed</span></div>
+        <div class="metric"><span class="metric-value">24.9%</span><span class="metric-label">of recorded crimes led to arrest</span></div>
+      </div>
+      <div class="stack">
+        <span class="chip">python</span>
+        <span class="chip">pandas</span>
+        <span class="chip">data cleaning</span>
+        <span class="chip">matplotlib</span>
+        <span class="chip">seaborn</span>
+      </div>
+      <a class="project-link" href="https://github.com/Anahit85/Databehandling-Project" target="_blank" rel="noopener">View notebook on GitHub →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>MoonMissions — SQL Data Cleaning & Analysis</h3>
+        <span class="status">shipped</span>
+      </div>
+      <p>A T-SQL project cleaning and analyzing a lunar mission dataset: extracting successful missions, normalizing inconsistent operator names, and grouping/filtering to surface which operators and mission types actually repeat.</p>
+      <div class="stack">
+        <span class="chip">sql</span>
+        <span class="chip">t-sql</span>
+        <span class="chip">data cleaning</span>
+        <span class="chip">aggregation</span>
+      </div>
+      <a class="project-link" href="https://github.com/Anahit85/DataBase-SQL" target="_blank" rel="noopener">View SQL on GitHub →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Multi-Currency Bank System</h3>
+        <span class="status">shipped</span>
+      </div>
+      <p>An object-oriented banking simulator handling deposits, withdrawals, and transfers across USD, EUR, and AMD accounts — with protected balances, automatic currency conversion, and full transaction history.</p>
+      <div class="stack">
+        <span class="chip">python</span>
+        <span class="chip">oop</span>
+        <span class="chip">encapsulation</span>
+        <span class="chip">error handling</span>
+      </div>
+      <a class="project-link" href="https://github.com/Anahit85/Python-Homeworks" target="_blank" rel="noopener">View code on GitHub →</a>
+    </div>
+
+    <div class="more-projects">
+      More on GitHub: a JSON-backed Library Management System, a SmartStorage inventory manager, and a University enrollment system with custom exception handling — <a href="https://github.com/Anahit85" target="_blank" rel="noopener">github.com/Anahit85</a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">/// 02</span>
+      <h2>Skills schema</h2>
+    </div>
+    <div class="schema">
+      <div class="schema-row"><span class="schema-key">python</span><span class="schema-type">language · advanced</span></div>
+      <div class="schema-row"><span class="schema-key">c#</span><span class="schema-type">language · basic</span></div>
+      <div class="schema-row"><span class="schema-key">sql</span><span class="schema-type">database</span></div>
+      <div class="schema-row"><span class="schema-key">pandas / numpy</span><span class="schema-type">data_processing</span></div>
+      <div class="schema-row"><span class="schema-key">matplotlib / seaborn</span><span class="schema-type">visualization</span></div>
+      <div class="schema-row"><span class="schema-key">scikit-learn</span><span class="schema-type">machine_learning</span></div>
+      <div class="schema-row"><span class="schema-key">random forest / decision trees</span><span class="schema-type">ml_models</span></div>
+      <div class="schema-row"><span class="schema-key">feature selection / gridsearch</span><span class="schema-type">model_tuning</span></div>
+      <div class="schema-row"><span class="schema-key">pytorch / tensorflow</span><span class="schema-type">in_progress</span></div>
+    </div>
+
+    <div class="section-head" style="margin-top:48px;">
+      <span class="section-tag">/// languages</span>
+      <h2 style="font-size:20px;">Working across five languages</h2>
+    </div>
+    <div class="schema">
+      <div class="schema-row"><span class="schema-key">german (swiss) / armenian</span><span class="schema-type">native</span></div>
+      <div class="schema-row"><span class="schema-key">swedish</span><span class="schema-type">fluent</span></div>
+      <div class="schema-row"><span class="schema-key">russian</span><span class="schema-type">fluent</span></div>
+      <div class="schema-row"><span class="schema-key">english</span><span class="schema-type">fluent</span></div>
+      <div class="schema-row"><span class="schema-key">spanish / italian</span><span class="schema-type">basic</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">/// 03</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">2024 – 2025</div>
+        <div class="tl-title">Jensen Utbildning, NTI-Skola — Administratör BAS</div>
+        <div class="tl-desc">Business economics, marketing, communication, and sustainability coursework alongside administrative responsibilities.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Sep – Dec 2024</div>
+        <div class="tl-title">APL Internship — Skandinavisk Bygg och Bemanning AB</div>
+        <div class="tl-desc">Marketing, social media, and sustainable development work.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">2015 – 2016</div>
+        <div class="tl-title">Manor AG, Zurich — Fashion Consultant</div>
+        <div class="tl-desc">Eyewear and accessories consulting, customer service.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">2009 – 2015</div>
+        <div class="tl-title">Mango Fashion, Zurich — Department Lead</div>
+        <div class="tl-desc">Led sales and cashier operations, staff scheduling, and returns/complaints handling — six years building the people-management and customer-facing skills now behind a more technical career.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">/// 04</span>
+      <h2>Education & path</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-period">2025 – 2027</div>
+        <div class="tl-title">IT-Högskolan Stockholm — AI & Machine Learning Developer (YH)</div>
+        <div class="tl-desc">Python, SQL databases, data analysis & visualization (Pandas, NumPy, Matplotlib, Seaborn), and machine learning with scikit-learn.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">May 2026</div>
+        <div class="tl-title">Python Certificate — Umba Training</div>
+        <div class="tl-desc">48-class online Python course, completed alongside the YH program.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">v.42 – v.49, 2026</div>
+        <div class="tl-title">LIA 1 — Internship search (open now)</div>
+        <div class="tl-desc">Looking for an AI/ML internship to turn complex data into practical, working solutions — with a particular interest in generative AI and workflow automation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-period">Upcoming</div>
+        <div class="tl-title">LIA 2 & Thesis</div>
+        <div class="tl-desc">Second internship phase with an accompanying thesis project.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card">
+      <h2>Let's build a pipeline together.</h2>
+      <p>Open to LIA 1 internship opportunities (v.42–v.49, 2026) in AI and machine learning. Reach out — I reply fast.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:anahit.poghosyan@iths.se">anahit.poghosyan@iths.se</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/anahit-poghosyan-74a9472b0/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/Anahit85" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built with python, pandas, and a lot of coffee — Stockholm, Sweden
+</footer>
+
+</body>
+</html>
